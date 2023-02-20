@@ -8,7 +8,7 @@ def initialize (author, magazine, title)
 end
 end
 
-Article.new('Elon Musk Buys Twitter', 'Best', 'Brian Wahungu')
+Article.new('Brian Wahungu', 'Best', 'Elon Musk Buys Twitter')
 
 binding.pry
 

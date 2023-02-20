@@ -1,7 +1,6 @@
 CREATE TABLE articles (
   id INTEGER PRIMARY KEY,
-    name TEXT,
-    author TEXT,
-    magazine TEXT
+    Author TEXT,
+    Magazine TEXT,
+    Article TEXT
 );
-
