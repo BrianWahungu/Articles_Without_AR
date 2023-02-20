@@ -10,8 +10,11 @@ end
 
 Article.new('Elon Musk Buys Twitter', 'Best', 'Brian Wahungu')
 
-
-
 binding.pry
 
-
+class Article 
+    def self.all
+        rows = DB.execute(SELECT * FROM articles)
+        rows.map
+    end
+end
