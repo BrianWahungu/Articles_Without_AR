@@ -16,3 +16,20 @@ puts a.name + a.category
 
 binding.pry
 
+# Object Relationship Methods
+
+class Magazine 
+    attr_accessor :author, :magazine, :title
+        def self.all
+            rows = DB.execute(SELECT * FROM articles)
+            rows.map do |row|
+            self.new(row)
+            end
+        end
+    def initialize (row)
+        @id = row["id"]
+        @author = author["author"]
+        @magazine = magazine["magazine"]
+        @title = title["title"]
+    end
+    end
