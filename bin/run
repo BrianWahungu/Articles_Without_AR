@@ -19,3 +19,9 @@ magazine.name = "Fresh"
 magazine.category = "Health"
 puts magazine.name # Output: "Fresh"
 puts magazine.category # Output: "Health"
+
+# TODO: An article is initialized with an author as an Author object, a magazine as a Magazine object, and title as a string.
+# TODO: An article cannot change its author, magazine, or title after it has been initialized.
+
+article = Article.new("top g","Wall street","top g freed ")
+puts article.author, article.magazine,article.title

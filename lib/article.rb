@@ -1,28 +1,15 @@
-class Author
-    attr_reader :name, :email
-    
-    def initialize(name, email)
-      @name = name
-      @email = email
-    end
-  end
+# TODO: An article is initialized with an author as an Author object, a magazine as a Magazine object, and title as a string.
+# TODO: An article cannot change its author, magazine, or title after it has been initialized.
+
+
+
+class Article
+  attr_reader :author, :magazine, :title
   
-  class Magazine
-    attr_reader :name, :publisher
-    
-    def initialize(name, publisher)
-      @name = name
-      @publisher = publisher
-    end
+  def initialize(author, magazine, title)
+    @author = author
+    @magazine = magazine
+    @title = title
   end
-  
-  class Article
-    attr_reader :author, :magazine, :title
-    
-    def initialize(author, magazine, title)
-      @author = author
-      @magazine = magazine
-      @title = title
-    end
-  end
-  
+end
+
