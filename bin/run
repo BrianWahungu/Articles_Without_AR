@@ -1,1 +1,7 @@
 require_relative '../config/environment'
+
+author = Author.new("Brian Wahungu")
+  puts author.name  # outputs "J.K. Rowling"
+  
+  author.name = "Chris Moses"  # this would raise a NoMethodError, as there is no setter method for @name
+    
