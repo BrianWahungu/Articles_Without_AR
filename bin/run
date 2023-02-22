@@ -1,27 +1,85 @@
-require_relative '../config/environment'
+require_relative "../config/environment"
+# Create some author and magazine instances
+author1 = Author.new("John Doe")
+author2 = Author.new("Jane Smith")
+magazine1 = Magazine.new("Sports Illustrated", "Sports")
+magazine2 = Magazine.new("National Geographic", "Nature")
+magazine3 = Magazine.new("Time", "News")
 
-# TODO: An author is initialized with a name, as a string.
-# TODO: A name cannot be changed after it is initialized.
-# TODO: Returns the name of the author
+# Associate authors with magazines
+author1.add_article(magazine1, "10 Amazing Athletes")
+author1.add_article(magazine2, "The Wonders of the Amazon")
+author2.add_article(magazine2, "The Beauty of Iceland")
+author2.add_article(magazine3, "The State of the World")
 
-author = Author.new("Brian Wahungu")
-puts author.name  # outputs "Brian Wahungu"
-# author.name = "Chris Moses"  # this would raise a NoMethodError, as there is no setter method for @name
+# Test author methods
+puts author1.name #=> "John Doe"
+puts author1.articles #=> [#<Article:0x00007fdcfb898b68 @author=#<Author:0x00007fdcfb898b18 @name="John Doe">, @magazine=#<Magazine:0x00007fdcfb8a4298 @name="Sports Illustrated", @category="Sports">, @title="10 Amazing Athletes">, #<Article:0x00007fdcfb8a3db0 @author=#<Author:0x00007fdcfb898b18 @name="John Doe">, @magazine=#<Magazine:0x00007fdcfb8a4f60 @name="National Geographic", @category="Nature">, @title="The Wonders of the Amazon">]
+puts author1.magazines #=> [#<Magazine:0x00007fdcfb8a4298 @name="Sports Illustrated", @category="Sports">, #<Magazine:0x00007fdcfb8a4f60 @name="National Geographic", @category="Nature">]
+author1.add_article(magazine1, "New Trends in Fitness")
+puts author1.articles #=> [#<Article:0x00007fdcfb898b68 @author=#<Author:0x00007fdcfb898b18 @name="John Doe">, @magazine=#<Magazine:0x00007fdcfb8a4298 @name="Sports Illustrated", @category="Sports">, @title="10 Amazing Athletes">, #<Article:0x00007fdcfb8a3db0 @author=#<Author:0x00007fdcfb898b18 @name="John Doe">, @magazine=#<Magazine:0x00007fdcfb8a4f60 @name="National Geographic", @category="Nature">, @title="The Wonders of the Amazon">, #<Article:0x00007fdcfb8a1b08 @author=#<Author:0x00007fdcfb898b18 @name="John Doe">, @magazine=#<Magazine:0x00007fdcfb8a4298 @name="Sports Illustrated", @category="Sports">, @title="New Trends in Fitness">]
+puts author1.magazines #=> [#<Magazine:0x00007fdcfb8a4298 @name="Sports Illustrated", @category="Sports">, #<Magazine:0x00007fdcfb8a4f60 @name="National Geographic", @category="Nature">]
 
-# TODO: A magazine is initialized with a name as a string and a category as a string.
-# TODO: The name and category of the magazine can be changed after being initialized.   
+# Test magazine methods
+puts magazine2.name #=> "National Geographic"
+puts magazine2.category #=> "Nature"
+puts Magazine.all #=> [#<Magazine:0x00007fdcfb8a4298 @name="Sports Illustrated", @category="Sports">, #<Mag
 
-magazine = Magazine.new("My Magazine", "Weather")
-puts magazine.name # Output: "My Magazine"
-puts magazine.category # Output: "Weather"
-  
-magazine.name = "Fresh"
-magazine.category = "Health"
-puts magazine.name # Output: "Fresh"
-puts magazine.category # Output: "Health"
+# create some magazines
+mag1 = Magazine.new("Magazine 1", "Category A")
+mag2 = Magazine.new("Magazine 2", "Category B")
 
-# TODO: An article is initialized with an author as an Author object, a magazine as a Magazine object, and title as a string.
-# TODO: An article cannot change its author, magazine, or title after it has been initialized.
+# find a magazine by name
+found_magazine = Magazine.find_by_name("Magazine 1")
+puts found_magazine.name # "Magazine 1"
 
-article = Article.new("top g","Wall street","top g freed ")
-puts article.author, article.magazine,article.title
+# create some articles
+author1 = Author.new("Author 1")
+author2 = Author.new("Author 2")
+
+art1 = Article.new(author1, mag1, "Article 1")
+art2 = Article.new(author1, mag2, "Article 2")
+art3 = Article.new(author2, mag1, "Article 3")
+art4 = Article.new(author2, mag2, "Article 4")
+art5 = Article.new(author2, mag2, "Article 5")
+
+# get article titles for a magazine
+titles = mag2.article_titles
+puts titles # ["Article 2", "Article 4", "Article 5"]
+
+# get contributing authors for a magazine
+authors = mag2.contributing_authors
+puts authors.map { |author| author.name } # ["Author 2"]
+
+# Create a few Author instances
+author1 = Author.new("J.K. Rowling")
+author2 = Author.new("Stephen King")
+author3 = Author.new("Agatha Christie")
+
+# Create a few Magazine instances
+magazine1 = Magazine.new("Vogue", "Fashion")
+magazine2 = Magazine.new("National Geographic", "Science")
+magazine3 = Magazine.new("The New Yorker", "Politics")
+
+# Create a few Article instances
+article1 = Article.new(author1, magazine1, "The Magic of Fashion")
+article2 = Article.new(author2, magazine2, "Exploring the Depths of the Ocean")
+article3 = Article.new(author3, magazine3, "The Art of Political Satire")
+
+# Associate articles with authors
+author1.add_article(magazine1, "The Power of Imagination")
+author1.add_article(magazine2, "The Wonders of the Natural World")
+author2.add_article(magazine2, "Uncovering the Secrets of the Universe")
+author3.add_article(magazine3, "The Importance of Free Speech")
+
+# Test magazine methods
+puts Magazine.all.length # should print 3
+puts magazine1.article_titles # should print ["The Magic of Fashion", "The Power of Imagination"]
+puts magazine2.contributing_authors.map(&:name) # should print ["J.K. Rowling", "Stephen King"]
+puts Magazine.find_by_name("Vogue").category # should print "Fashion"
+
+# Test author methods
+#puts Author.all.length # should print 3
+puts author1.magazines.map(&:name) # should print ["Vogue", "National Geographic"]
+puts author2.articles.map(&:title) # should print ["Exploring the Depths of the Ocean", "Uncovering the Secrets of the Universe"]
+puts author3.topic_areas # should print ["Politics"]
