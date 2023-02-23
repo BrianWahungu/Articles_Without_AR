@@ -65,5 +65,5 @@ HAPPY CODING ! ! !
 Apache 2.0
 
 # Contributors:
-Brian Wahungu
-Albert Byrone
+1. Brian Wahungu
+2. Albert Byrone
